@@ -111,6 +111,109 @@
     "groupTitle": "AccessControl"
   },
   {
+    "type": "patch",
+    "url": "/access/roles",
+    "title": "Edit Role details",
+    "group": "AccessControl",
+    "name": "PatchRoles",
+    "permission": [
+      {
+        "name": "MUST VERIFY EMAIL & NOT DEFAULT PASSWORD"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The unique role name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "description",
+            "description": "<p>Role description</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"_id\": \"5f2a57d6d101d3248afefc19\",\n   \"name\": \"New Role Name\",\n   \"description\": \"This is new role\",\n   \"createdAt\": \"2020-08-05T06:55:18.554Z\",\n   \"updatedAt\": \"2020-08-05T06:55:18.554Z\",\n   \"__v\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n  \"message\": [\n      {\n          \"value\": \"existing role\",\n          \"msg\": \"Role with the same name already exist!\",\n          \"param\": \"name\",\n          \"location\": \"body\"\n      }\n    ]\n  }",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "ResourceNotFoundError:",
+          "content": " HTTP/1.1 404 NotFound\n{\n \"status\": false,\n \"message\": \"Resource not found!\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Can",
+            "description": "<p>not find specified resource.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/accessControl/accessControl.routes.js",
+    "groupTitle": "AccessControl"
+  },
+  {
     "type": "post",
     "url": "/access/roles",
     "title": "Create New Role",
@@ -178,13 +281,13 @@
           "type": "json"
         },
         {
-          "title": "Error-Response:",
+          "title": "Unauthorized-Error:",
           "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
           "type": "json"
         },
         {
-          "title": "Error-Response:",
-          "content": " HTTP/1.1 403 Unauthorized\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
           "type": "json"
         }
       ],
