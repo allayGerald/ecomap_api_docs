@@ -113,7 +113,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/access/roles",
-    "title": "Create New Roles",
+    "title": "Create New Role",
     "group": "AccessControl",
     "name": "PostRoles",
     "permission": [
