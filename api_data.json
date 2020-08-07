@@ -1,5 +1,101 @@
 [
   {
+    "type": "delete",
+    "url": "/access/roles",
+    "title": "Delete Role",
+    "group": "AccessControl",
+    "name": "DeleteRoles",
+    "permission": [
+      {
+        "name": "MUST VERIFY EMAIL & NOT DEFAULT PASSWORD"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Role Id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 204\n{\n   \"status\": true\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 403 FORBIDDEN ENTITY\n{\n   \"status\": false,\n  \"message\":  \"message\": \"Can not delete default role\"\n  }",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "ResourceNotFoundError:",
+          "content": " HTTP/1.1 404 NotFound\n{\n \"status\": false,\n \"message\": \"Resource not found!\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ResourceNotFoundError",
+            "description": "<p>Can not find specified resource.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/accessControl/accessControl.routes.js",
+    "groupTitle": "AccessControl"
+  },
+  {
     "type": "get",
     "url": "/access/permissions",
     "title": "Fetch all permissions",
@@ -27,7 +123,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "[\n{\n   _id: 5f288c53f882e37de9101698,\n   name: 'Administrator',\n   description: 'System Administrator, Controls the whole system',\n   createdAt: 2020-08-03T22:14:43.583Z,\n   updatedAt: 2020-08-03T22:14:43.583Z,\n   __v: 0\n },\n{\n   _id: 5f288c53f882e37de91016a1,\n   name: 'Ambassador',\n   description: 'Regional Ambassador, Approves regional mapping entries',\n   createdAt: 2020-08-03T22:14:43.698Z,\n   updatedAt: 2020-08-03T22:14:43.698Z,\n   __v: 0\n },\n{\n   _id: 5f288c53f882e37de91016a2,\n   name: 'Editor',\n   description: 'Editor, Can view all mapping information and approve mapping entries',\n   createdAt: 2020-08-03T22:14:43.700Z,\n   updatedAt: 2020-08-03T22:14:43.700Z,\n   __v: 0\n }\n]",
+          "content": "[\n{\n   \"_id\": 5f288c53f882e37de9101698,\n   \"isDefault\": true,\n   \"name\": 'Administrator',\n   \"description\": 'System Administrator, Controls the whole system',\n   \"createdAt\": 2020-08-03T22:14:43.583Z,\n   \"updatedAt\": 2020-08-03T22:14:43.583Z,\n   \"__v\": 0\n },\n{\n   \"_id\": 5f288c53f882e37de91016a1,\n   \"isDefault\": true,\n   \"name\": 'Ambassador',\n   \"description\": 'Regional Ambassador, Approves regional mapping entries',\n   \"createdAt\": 2020-08-03T22:14:43.698Z,\n   \"updatedAt\": 2020-08-03T22:14:43.698Z,\n   \"__v\": 0\n },\n{\n   \"_id\": 5f288c53f882e37de91016a2,\n   \"isDefault\": true,\n   \"name\": 'Editor',\n   \"description\": 'Editor, Can view all mapping information and approve mapping entries',\n   \"createdAt\": 2020-08-03T22:14:43.700Z,\n   \"updatedAt\": 2020-08-03T22:14:43.700Z,\n   \"__v\": 0\n }\n]",
           "type": "json"
         }
       ]
@@ -61,10 +157,42 @@
       }
     },
     "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "bool",
+            "optional": false,
+            "field": "isDefault",
+            "description": "<p>Whether a role is default role (Default roles can never be deleted).</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Unique id of the Role.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the Role.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Description  .</p>"
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "[\n{\n   _id: 5f288c53f882e37de9101698,\n   name: 'Administrator',\n   description: 'System Administrator, Controls the whole system',\n   createdAt: 2020-08-03T22:14:43.583Z,\n   updatedAt: 2020-08-03T22:14:43.583Z,\n   __v: 0\n },\n{\n   _id: 5f288c53f882e37de91016a1,\n   name: 'Ambassador',\n   description: 'Regional Ambassador, Approves regional mapping entries',\n   createdAt: 2020-08-03T22:14:43.698Z,\n   updatedAt: 2020-08-03T22:14:43.698Z,\n   __v: 0\n },\n{\n   _id: 5f288c53f882e37de91016a2,\n   name: 'Editor',\n   description: 'Editor, Can view all mapping information and approve mapping entries',\n   createdAt: 2020-08-03T22:14:43.700Z,\n   updatedAt: 2020-08-03T22:14:43.700Z,\n   __v: 0\n }\n]",
+          "content": "[\n{\n   \"_id\": 5f288c53f882e37de9101698,\n   \"isDefault\": true,\n   \"name\": 'Administrator',\n   \"description\": 'System Administrator, Controls the whole system',\n   \"createdAt\": 2020-08-03T22:14:43.583Z,\n   \"updatedAt\": 2020-08-03T22:14:43.583Z,\n   \"__v\": 0\n },\n{\n   \"_id\": 5f288c53f882e37de91016a1,\n   \"isDefault\": true,\n   name: 'Ambassador',\n   description: 'Regional Ambassador, Approves regional mapping entries',\n   createdAt: 2020-08-03T22:14:43.698Z,\n   updatedAt: 2020-08-03T22:14:43.698Z,\n   __v: 0\n },\n{\n   \"_id\": 5f288c53f882e37de91016a2,\n   \"isDefault\": true,\n   name: 'Editor',\n   description: 'Editor, Can view all mapping information and approve mapping entries',\n   createdAt: 2020-08-03T22:14:43.700Z,\n   updatedAt: 2020-08-03T22:14:43.700Z,\n   __v: 0\n }\n]",
           "type": "json"
         }
       ]
@@ -101,7 +229,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "[\n    {\n     \"_id\": \"5f288c53f882e37de9101698\",\n     \"name\": \"Administrator\",\n     \"description\": \"System Administrator, Controls the whole system\",\n     \"createdAt\": \"2020-08-03T22:14:43.583Z\",\n     \"updatedAt\": \"2020-08-03T22:14:43.583Z\",\n     \"__v\": 0,\n     \"rolePermissions\": {\n         \"permissions\": [\n             {\n                 \"_id\": \"5f288c53f882e37de9101691\",\n                 \"moduleName\": \"users\",\n                 \"displayName\": \"Can create,update and delete staff \",\n                 \"genericName\": \"write-staff\",\n                 \"createdAt\": \"2020-08-03T22:14:43.564Z\",\n                 \"updatedAt\": \"2020-08-03T22:14:43.564Z\",\n                 \"__v\": 0\n             },\n             {\n                 \"_id\": \"5f288c53f882e37de9101692\",\n                 \"moduleName\": \"users\",\n                 \"displayName\": \"Can view staffs\",\n                 \"genericName\": \"read-staff\",\n                 \"createdAt\": \"2020-08-03T22:14:43.567Z\",\n                 \"updatedAt\": \"2020-08-03T22:14:43.567Z\",\n                 \"__v\": 0\n             }\n         ]\n     },\n {\n     \"_id\": \"5f288c53f882e37de91016a1\",\n     \"name\": \"Ambassador\",\n     \"description\": \"Regional Ambassador, Approves regional mapping entries\",\n     \"createdAt\": \"2020-08-03T22:14:43.698Z\",\n     \"updatedAt\": \"2020-08-03T22:14:43.698Z\",\n     \"__v\": 0,\n     \"rolePermissions\": {\n         \"permissions\": []\n     }\n }\n }\n]",
+          "content": "[\n    {\n     \"_id\": \"5f288c53f882e37de9101698\",\n     \"name\": \"Administrator\",\n     \"isDefault\": true,\n     \"description\": \"System Administrator, Controls the whole system\",\n     \"createdAt\": \"2020-08-03T22:14:43.583Z\",\n     \"updatedAt\": \"2020-08-03T22:14:43.583Z\",\n     \"__v\": 0,\n     \"rolePermissions\": {\n         \"permissions\": [\n             {\n                 \"_id\": \"5f288c53f882e37de9101691\",\n                 \"moduleName\": \"users\",\n                 \"displayName\": \"Can create,update and delete staff \",\n                 \"genericName\": \"write-staff\",\n                 \"createdAt\": \"2020-08-03T22:14:43.564Z\",\n                 \"updatedAt\": \"2020-08-03T22:14:43.564Z\",\n                 \"__v\": 0\n             },\n             {\n                 \"_id\": \"5f288c53f882e37de9101692\",\n                 \"moduleName\": \"users\",\n                 \"displayName\": \"Can view staffs\",\n                 \"genericName\": \"read-staff\",\n                 \"createdAt\": \"2020-08-03T22:14:43.567Z\",\n                 \"updatedAt\": \"2020-08-03T22:14:43.567Z\",\n                 \"__v\": 0\n             }\n         ]\n     },\n {\n     \"_id\": \"5f288c53f882e37de91016a1\",\n     \"name\": \"Ambassador\",\n     \"isDefault\": true,\n     \"description\": \"Regional Ambassador, Approves regional mapping entries\",\n     \"createdAt\": \"2020-08-03T22:14:43.698Z\",\n     \"updatedAt\": \"2020-08-03T22:14:43.698Z\",\n     \"__v\": 0,\n     \"rolePermissions\": {\n         \"permissions\": []\n     }\n }\n }\n]",
           "type": "json"
         }
       ]
@@ -158,7 +286,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n   \"_id\": \"5f2a57d6d101d3248afefc19\",\n   \"name\": \"New Role Name\",\n   \"description\": \"This is new role\",\n   \"createdAt\": \"2020-08-05T06:55:18.554Z\",\n   \"updatedAt\": \"2020-08-05T06:55:18.554Z\",\n   \"__v\": 0\n}",
+          "content": "{\n   \"_id\": \"5f2a57d6d101d3248afefc19\",\n   \"name\": \"Updated Role Name\",\n   \"description\": \"Updated description\",\n   \"createdAt\": \"2020-08-05T06:55:18.554Z\",\n   \"updatedAt\": \"2020-08-05T06:55:18.554Z\",\n   \"__v\": 0\n}",
           "type": "json"
         }
       ]
@@ -203,8 +331,8 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "Can",
-            "description": "<p>not find specified resource.</p>"
+            "field": "ResourceNotFoundError",
+            "description": "<p>Can not find specified resource.</p>"
           }
         ]
       }
