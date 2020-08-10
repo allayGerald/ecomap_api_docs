@@ -740,6 +740,74 @@
   },
   {
     "type": "patch",
+    "url": "users/:id/change-status",
+    "title": "Update user",
+    "group": "Users",
+    "name": "PatchChangeStatus",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the user to change status, passed as UrlParma</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "isActive",
+            "description": "<p>New account status, true for active</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "reason",
+            "description": "<p>Reason for changing user account status. Required when deactivating account</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n\"status\": true,\n\"message\": \"User account status changed successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n   \"message\": [\n       {\n           \"value\": \"\",\n           \"msg\": \"Please tell us why you want to deactivate this user\",\n           \"param\": \"reason\",\n           \"location\": \"body\"\n       },\n       {\n           \"value\": \"\",\n           \"msg\": \"Status is required!\",\n           \"param\": \"isActive\",\n           \"location\": \"body\"\n       }\n   ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/users/user.routes.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "patch",
     "url": "/users",
     "title": "Update user",
     "group": "Users",
