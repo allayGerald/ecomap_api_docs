@@ -499,7 +499,7 @@
       "examples": [
         {
           "title": "UNPROCESSABLE ENTITY",
-          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n  \"message\": [\n      {\n          \"value\": \"not_current_password\",\n          \"msg\": \"The currentPassword field is required and must match your current password\",\n          \"param\": \"currentPassword\",\n          \"location\": \"body\"\n      },\n      {\n          \"value\": \"\",\n          \"msg\": \"A new password has to be at least 8 characters long, must contain capital later, a special character and a number\",\n          \"param\": \"password\",\n          \"location\": \"body\"\n      },\n      {\n          \"value\": \"does_not_match\",\n          \"msg\": \"Password confirmation field does not match password\",\n          \"param\": \"passwordConfirmation\",\n          \"location\": \"body\"\n      }\n  ]\n}",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n  \"message\": [\n      {\n          \"value\": \"not_current_password\",\n          \"msg\": \"The currentPassword field is required and must match your current password\",\n          \"param\": \"currentPassword\",\n          \"location\": \"body\"\n      },\n      {\n          \"value\": \"\",\n          \"msg\": \"Your password must be at least 8 characters long, MUST contain at least one capital later, a lower case letter, a special character and a number\",\n          \"param\": \"password\",\n          \"location\": \"body\"\n      },\n      {\n          \"value\": \"does_not_match\",\n          \"msg\": \"Password confirmation field does not match password\",\n          \"param\": \"passwordConfirmation\",\n          \"location\": \"body\"\n      }\n  ]\n}",
           "type": "json"
         }
       ]
@@ -606,6 +606,107 @@
         {
           "title": "WRONG EMAIL OR PASSWORD",
           "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Invalid Email or Password\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/auth/auth.routes.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
+    "url": "/auth/signup",
+    "title": "Signup to system",
+    "group": "Auth",
+    "name": "PostSignup",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>user email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>user password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "passwordConfirmation",
+            "description": "<p>Password confirmation field</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>user first name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "lastName",
+            "description": "<p>user last name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "phone",
+            "description": "<p>user phone number</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "boolean",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Response status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User details</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Info message</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"status\": true,\n   \"user\": {\n       \"updatedAt\": \"2020-08-10T06:41:14.984Z\",\n       \"createdAt\": \"2020-08-10T06:41:14.984Z\",\n       \"role\": {\n           \"_id\": \"5f30b8819a19668177913a06\"\n       },\n       \"firstName\": \"Gerald\",\n       \"lastName\": \"Allay\",\n       \"email\": \"test@gmail.com\",\n       \"_id\": \"5f30ec0ab0df7ab334230a79\"\n   },\n   \"message\": \"Before proceeding, please check your email for verification link.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n     \"status\": false,\n \"message\": [\n      {\n          \"value\": \"\",\n          \"msg\": \"Password is required!\",\n          \"param\": \"password\",\n          \"location\": \"body\"\n      },\n      {\n          \"value\": \"taken@email.com\",\n          \"msg\": \"This email is taken!\",\n          \"param\": \"email\",\n          \"location\": \"body\"\n      }\n  ]\n}",
           "type": "json"
         }
       ]
