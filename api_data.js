@@ -714,5 +714,28 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/modules/auth/auth.routes.js",
     "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
+    "url": "/auth/verify",
+    "title": "Verify Email",
+    "group": "Auth",
+    "name": "PostVerify",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Email verification token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/auth/auth.routes.js",
+    "groupTitle": "Auth"
   }
 ] });
