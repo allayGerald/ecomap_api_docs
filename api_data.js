@@ -1,7 +1,7 @@
 define({ "api": [
   {
     "type": "delete",
-    "url": "/access/roles",
+    "url": "/access/roles/:id",
     "title": "Delete Role",
     "group": "AccessControl",
     "name": "DeleteRoles",
@@ -240,7 +240,7 @@ define({ "api": [
   },
   {
     "type": "patch",
-    "url": "/access/roles",
+    "url": "/access/roles/:id",
     "title": "Edit Role details",
     "group": "AccessControl",
     "name": "PatchRoles",
@@ -265,6 +265,13 @@ define({ "api": [
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Role id</p>"
+          },
           {
             "group": "Parameter",
             "type": "string",
@@ -717,7 +724,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/auth/verify",
+    "url": "/auth/verify/:token",
     "title": "Verify Email",
     "group": "Auth",
     "name": "PostVerify",
@@ -741,7 +748,7 @@ define({ "api": [
   {
     "type": "patch",
     "url": "users/:id/change-status",
-    "title": "Update user",
+    "title": "Change account status",
     "group": "Users",
     "name": "PatchChangeStatus",
     "header": {
@@ -765,7 +772,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "id",
-            "description": "<p>Id of the user to change status, passed as UrlParma</p>"
+            "description": "<p>Id of the user to change status, passed as url parameter</p>"
           },
           {
             "group": "Parameter",
@@ -808,7 +815,7 @@ define({ "api": [
   },
   {
     "type": "patch",
-    "url": "/users",
+    "url": "/users/:id",
     "title": "Update user",
     "group": "Users",
     "name": "PatchUsers",
@@ -828,6 +835,13 @@ define({ "api": [
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the user</p>"
+          },
           {
             "group": "Parameter",
             "type": "String",
