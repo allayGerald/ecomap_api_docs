@@ -747,6 +747,183 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/business-categories?search=",
+    "title": "Fetch Business Categories",
+    "group": "BusinessCategories",
+    "name": "GetCategories",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "search",
+            "description": "<p>search term</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "[\n{\n       \"_id\": \"5f33ae15b58dcbb4eac2d0a6\",\n       \"stakeholderType\": {\n           \"_id\": \"5f33ae15b58dcbb4eac2d097\",\n           \"name\": \"Stakeholders group two\",\n           \"description\": \"Stakeholders group two\",\n           \"createdAt\": \"2020-08-12T08:53:41.061Z\",\n           \"updatedAt\": \"2020-08-12T08:53:41.061Z\",\n           \"__v\": 0\n       },\n       \"name\": \"Business incubators and accelerators\",\n       \"definitions\": \"Focus on supporting the growth of companies with a combination of intensive coaching, support services, and sometimes funding. Typically, an accelerator is a cohort based limited time programme, and incubators have continuous intake, but in Tanzania the names are often used interchangeably.\",\n       \"createdAt\": \"2020-08-12T08:53:41.100Z\",\n       \"updatedAt\": \"2020-08-12T08:53:41.100Z\",\n       \"__v\": 0\n   },\n{\n       \"_id\": \"5f33ae15b58dcbb4eac2d0ab\",\n       \"stakeholderType\": {\n           \"_id\": \"5f33ae15b58dcbb4eac2d098\",\n           \"name\": \"Stakeholders group three\",\n           \"description\": \"Stakeholders group three\",\n           \"createdAt\": \"2020-08-12T08:53:41.064Z\",\n           \"updatedAt\": \"2020-08-12T08:53:41.064Z\",\n           \"__v\": 0\n       },\n       \"name\": \"Challenge funds\",\n       \"definitions\": \"Provide funding to innovations working to solve defined challenges or technology areas. Often facilitated through a series of time-bound funding rounds, sometimes focusing on different themes per round.\",\n       \"createdAt\": \"2020-08-12T08:53:41.116Z\",\n       \"updatedAt\": \"2020-08-12T08:53:41.116Z\",\n       \"__v\": 0\n   },\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/businessCategories/businessCategory.routes.js",
+    "groupTitle": "BusinessCategories",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/business-categories",
+    "title": "Create Business Category",
+    "group": "BusinessCategories",
+    "name": "PostCategories",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "search",
+            "description": "<p>search term</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n       \"_id\": \"5f33ae15b58dcbb4eac2d0a6\",\n       \"name\": \"New Category\",\n       \"definitions\": \"\",\n       \"createdAt\": \"2020-08-12T08:53:41.100Z\",\n       \"updatedAt\": \"2020-08-12T08:53:41.100Z\",\n       \"__v\": 0\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n \"status\": false,\n \"message\": [\n     {\n         \"value\": \"Existing Category\",\n         \"msg\": \"Business category with the same name already exist!\",\n         \"param\": \"name\",\n         \"location\": \"body\"\n     }\n ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/businessCategories/businessCategory.routes.js",
+    "groupTitle": "BusinessCategories"
+  },
+  {
+    "type": "get",
     "url": "/sectors?search=",
     "title": "Fetch Sectors",
     "group": "Sectors",
