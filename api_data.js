@@ -923,6 +923,97 @@ define({ "api": [
     "groupTitle": "BusinessCategories"
   },
   {
+    "type": "put",
+    "url": "/business-categories/:id",
+    "title": "Update Business Category",
+    "group": "BusinessCategories",
+    "name": "PutCategories",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID of business category</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n       \"_id\": \"5f33ae15b58dcbb4eac2d0a6\",\n       \"name\": \"Updated Category\",\n       \"definitions\": \"\",\n       \"createdAt\": \"2020-08-12T08:53:41.100Z\",\n       \"updatedAt\": \"2020-08-12T08:53:41.100Z\",\n       \"__v\": 0\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n \"status\": false,\n \"message\": [\n     {\n         \"value\": \"Existing Category\",\n         \"msg\": \"Business category with the same name already exist!\",\n         \"param\": \"name\",\n         \"location\": \"body\"\n     }\n ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/businessCategories/businessCategory.routes.js",
+    "groupTitle": "BusinessCategories"
+  },
+  {
     "type": "get",
     "url": "/sectors?search=",
     "title": "Fetch Sectors",
