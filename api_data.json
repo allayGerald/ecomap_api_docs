@@ -746,6 +746,288 @@
     "groupTitle": "Auth"
   },
   {
+    "type": "get",
+    "url": "/sectors?search=",
+    "title": "Fetch Sectors",
+    "group": "Sectors",
+    "name": "GetSectors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "search",
+            "description": "<p>search term</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "[\n{\n       \"_id\": \"5f33574fafa3ad42e1a6ff34\",\n       \"name\": \"ICT\",\n       \"description\": \"ICT\",\n       \"createdAt\": \"2020-08-12T02:43:27.180Z\",\n       \"updatedAt\": \"2020-08-12T02:43:27.180Z\",\n       \"__v\": 0\n   },\n{\n       \"_id\": \"5f33881cfbb58d7cc27118d1\",\n       \"name\": \"ICTs\",\n       \"description\": \"ADMIN\",\n       \"createdAt\": \"2020-08-12T06:11:40.182Z\",\n       \"updatedAt\": \"2020-08-12T06:11:40.182Z\",\n       \"__v\": 0\n   },\n{\n       \"_id\": \"5f33574fafa3ad42e1a6ff2b\",\n       \"name\": \"agriculture / agri-business\",\n       \"description\": \"agriculture / agri-business\",\n       \"createdAt\": \"2020-08-12T02:43:27.138Z\",\n       \"updatedAt\": \"2020-08-12T02:43:27.138Z\",\n       \"__v\": 0\n   },\n{\n       \"_id\": \"5f33574fafa3ad42e1a6ff36\",\n       \"name\": \"arts/creativity\",\n       \"description\": \"arts/creativity\",\n       \"createdAt\": \"2020-08-12T02:43:27.185Z\",\n       \"updatedAt\": \"2020-08-12T02:43:27.185Z\",\n       \"__v\": 0\n   }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/sectors/sector.routes.js",
+    "groupTitle": "Sectors",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/sectors",
+    "title": "Create Sector",
+    "group": "Sectors",
+    "name": "PostSectors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>user name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "description",
+            "description": "<p>user description</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  \"_id\": \"5f3389bbbeba7281032ccbfa\",\n  \"name\": \"New Sector\",\n  \"description\": \"New Sector\",\n  \"createdAt\": \"2020-08-12T06:18:35.573Z\",\n  \"updatedAt\": \"2020-08-12T06:18:35.573Z\",\n  \"__v\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n \"status\": false,\n \"message\": [\n     {\n         \"value\": \"Existing Sector\",\n         \"msg\": \"Sector with the same name already exist!\",\n         \"param\": \"name\",\n         \"location\": \"body\"\n     }\n ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/sectors/sector.routes.js",
+    "groupTitle": "Sectors"
+  },
+  {
+    "type": "put",
+    "url": "/sectors",
+    "title": "Update Sector",
+    "group": "Sectors",
+    "name": "PutSectors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>user name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "description",
+            "description": "<p>user description</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  \"_id\": \"5f3389bbbeba7281032ccbfa\",\n  \"name\": \"Edited Sector\",\n  \"description\": \"New Sector\",\n  \"createdAt\": \"2020-08-12T06:18:35.573Z\",\n  \"updatedAt\": \"2020-08-12T06:18:35.573Z\",\n  \"__v\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n \"status\": false,\n \"message\": [\n     {\n         \"value\": \"Existing Sector\",\n         \"msg\": \"Sector with the same name already exist!\",\n         \"param\": \"name\",\n         \"location\": \"body\"\n     }\n ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/sectors/sector.routes.js",
+    "groupTitle": "Sectors"
+  },
+  {
     "type": "patch",
     "url": "users/:id/change-status",
     "title": "Change account status",
