@@ -1199,7 +1199,7 @@ define({ "api": [
   },
   {
     "type": "put",
-    "url": "/sectors",
+    "url": "/sectors/:id",
     "title": "Update Sector",
     "group": "Sectors",
     "name": "PutSectors",
@@ -1219,6 +1219,13 @@ define({ "api": [
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Sector ID</p>"
+          },
           {
             "group": "Parameter",
             "type": "String",
