@@ -1303,6 +1303,104 @@ define({ "api": [
     "groupTitle": "Sectors"
   },
   {
+    "type": "post",
+    "url": "/stakeholders",
+    "title": "Add stakeholder",
+    "group": "Stakeholders",
+    "name": "PostStakeholders",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The name of stakeholder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "location",
+            "description": "<p>stakeholder location details</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"location\": {\n       \"geopoint\": {\n           \"type\": \"Point\",\n           \"coordinates\": [\n               -122.5,\n               37.7\n           ]\n       },\n       \"name\": \"Kimara Temboni\"\n   },\n   \"socialMedias\": [\n       {\n           \"name\": \"twitter\",\n           \"url\": \"https://twitter.com/ipfsoftwares\"\n       },\n       {\n           \"name\": \"instagram\",\n           \"url\": \"https://instagram.com/ipfsoftwares\"\n       }\n   ],\n   \"services\": [],\n   \"associatedHubs\": [],\n   \"sectors\": [],\n   \"_id\": \"5f34e93b2de5ad96ae19433c\",\n   \"logo\": \"https://linktologo.png\",\n   \"certificate\": \"https://certificate.pdf\",\n   \"name\": \"iPF\",\n   \"contactPerson\": {\n       \"name\": \"Gerald\",\n       \"email\": \"gerald@ipfsoftwares.com\"\n   },\n   \"region\": \"Dar Es Salaam\",\n   \"challengesAttended\": [],\n   \"attachments\": [],\n   \"createdAt\": \"2020-08-13T07:18:19.176Z\",\n   \"updatedAt\": \"2020-08-13T07:18:19.176Z\",\n   \"__v\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n \"status\": false,\n \"message\": [\n     {\n         \"value\": \"Existing Sector\",\n         \"msg\": \"Sector with the same name already exist!\",\n         \"param\": \"name\",\n         \"location\": \"body\"\n     }\n ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/stakeholders/stakeholder.routes.js",
+    "groupTitle": "Stakeholders"
+  },
+  {
     "type": "patch",
     "url": "users/:id/change-status",
     "title": "Change account status",
