@@ -1401,6 +1401,47 @@ define({ "api": [
     "groupTitle": "Stakeholders"
   },
   {
+    "type": "get",
+    "url": "/users",
+    "title": "Fetch all users",
+    "group": "Users",
+    "name": "GetUsers",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "[\n{\n       \"isDefaultPassword\": false,\n       \"role\": {\n           \"isDefault\": true,\n           \"_id\": \"5f34fb8ec5bac1aff484629e\",\n           \"name\": \"Administrator\",\n           \"description\": \"System Administrator, Controls the whole system\",\n           \"createdAt\": \"2020-08-13T08:36:30.120Z\",\n           \"updatedAt\": \"2020-08-13T08:36:30.120Z\",\n           \"__v\": 0\n       },\n       \"isActive\": true,\n       \"_id\": \"5f34fb8ec5bac1aff48462a6\",\n       \"firstName\": \"HDIF\",\n       \"lastName\": \"Admin\",\n       \"email\": \"hdiftanzania@gmail.com\",\n       \"verifiedAt\": \"2020-08-13T08:36:29.718Z\",\n       \"lastLogin\": \"2020-08-13T08:36:48.257Z\",\n       \"createdAt\": \"2020-08-13T08:36:30.207Z\",\n       \"updatedAt\": \"2020-08-13T08:37:54.507Z\",\n       \"__v\": 0\n   }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n   \"message\": [\n       {\n           \"value\": \"\",\n           \"msg\": \"First name is required!\",\n           \"param\": \"firstName\",\n           \"location\": \"body\"\n       },\n       {\n           \"value\": \"\",\n           \"msg\": \"Last name is required!\",\n           \"param\": \"lastName\",\n           \"location\": \"body\"\n       },\n       {\n           \"value\": \"taken-email@example.com\",\n           \"msg\": \"This email is taken!\",\n           \"param\": \"email\",\n           \"location\": \"body\"\n       },\n       {\n           \"msg\": \"Ambassador Must have a region\",\n           \"param\": \"region\",\n           \"location\": \"body\"\n       }\n   ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/users/user.routes.js",
+    "groupTitle": "Users"
+  },
+  {
     "type": "patch",
     "url": "users/:id/change-status",
     "title": "Change account status",
