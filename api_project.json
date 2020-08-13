@@ -1,6 +1,6 @@
 {
   "title": "Innovation Ecosystem Map - API",
-  "url": "https://innovation-eco-map.herokuapp.com/api",
+  "url": "https://staging-api.innovationmap.co.tz/api",
   "name": "innovation_ecosystem_map_api",
   "version": "0.1.0",
   "description": "Innovation Ecosystem Map - API",
@@ -9,7 +9,7 @@
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2020-08-13T08:42:54.567Z",
+    "time": "2020-08-13T11:45:14.450Z",
     "url": "http://apidocjs.com",
     "version": "0.24.0"
   }

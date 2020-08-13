@@ -1428,15 +1428,6 @@ define({ "api": [
         }
       ]
     },
-    "error": {
-      "examples": [
-        {
-          "title": "UNPROCESSABLE ENTITY",
-          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n   \"message\": [\n       {\n           \"value\": \"\",\n           \"msg\": \"First name is required!\",\n           \"param\": \"firstName\",\n           \"location\": \"body\"\n       },\n       {\n           \"value\": \"\",\n           \"msg\": \"Last name is required!\",\n           \"param\": \"lastName\",\n           \"location\": \"body\"\n       },\n       {\n           \"value\": \"taken-email@example.com\",\n           \"msg\": \"This email is taken!\",\n           \"param\": \"email\",\n           \"location\": \"body\"\n       },\n       {\n           \"msg\": \"Ambassador Must have a region\",\n           \"param\": \"region\",\n           \"location\": \"body\"\n       }\n   ]\n}",
-          "type": "json"
-        }
-      ]
-    },
     "version": "0.0.0",
     "filename": "src/modules/users/user.routes.js",
     "groupTitle": "Users"
