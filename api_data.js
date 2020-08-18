@@ -1433,7 +1433,7 @@ define({ "api": [
     "groupTitle": "Users"
   },
   {
-    "type": "patch",
+    "type": "put",
     "url": "users/:id/change-status",
     "title": "Change account status",
     "group": "Users",
@@ -1573,7 +1573,7 @@ define({ "api": [
       "examples": [
         {
           "title": "UNPROCESSABLE ENTITY",
-          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n   \"message\": [\n       {\n           \"value\": \"\",\n           \"msg\": \"First name is required!\",\n           \"param\": \"firstName\",\n           \"location\": \"body\"\n       },\n       {\n           \"value\": \"\",\n           \"msg\": \"Last name is required!\",\n           \"param\": \"lastName\",\n           \"location\": \"body\"\n       },\n       {\n           \"value\": \"taken-email@example.com\",\n           \"msg\": \"This email is taken!\",\n           \"param\": \"email\",\n           \"location\": \"body\"\n       },\n       {\n           \"msg\": \"Ambassador Must have a region\",\n           \"param\": \"region\",\n           \"location\": \"body\"\n       }\n   ]\n}",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n   \"message\": [\n       {\n           \"value\": \"taken-email@example.com\",\n           \"msg\": \"This email is taken!\",\n           \"param\": \"email\",\n           \"location\": \"body\"\n       },\n       {\n           \"msg\": \"Ambassador Must have a region\",\n           \"param\": \"region\",\n           \"location\": \"body\"\n       }\n   ]\n}",
           "type": "json"
         }
       ]
