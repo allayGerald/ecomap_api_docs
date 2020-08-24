@@ -517,6 +517,70 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/auth/passwords/forgot",
+    "title": "Send Forgot Password Token",
+    "group": "Auth",
+    "name": "PostForgot",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>user email</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "boolean",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Response status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Info message</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"status\": true,\n   \"message\": \"Reset password email sent\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n     \"status\": false,\n \"message\": [\n      {\n          \"value\": \"\",\n          \"msg\": \"Provide valid email\",\n          \"param\": \"email\",\n          \"location\": \"body\"\n      }\n  ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "EMAIL NOT FOUND",
+          "content": " HTTP/1.1 404 NOT FOUND\n{\n     \"status\": false,\n \"message\": \"Theres no record of this email\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/auth/auth.routes.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
     "url": "/auth/login",
     "title": "Login to system",
     "group": "Auth",
@@ -613,6 +677,84 @@ define({ "api": [
         {
           "title": "WRONG EMAIL OR PASSWORD",
           "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Invalid Email or Password\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/auth/auth.routes.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
+    "url": "/auth/passwords/reset",
+    "title": "Reset Password",
+    "group": "Auth",
+    "name": "PostResetPassword",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>reset password token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>user password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "confirmPassword",
+            "description": "<p>Password confirmation field</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "boolean",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Response status</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Info message</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"status\": true,\n   \"message\": \"Password Changed!\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n     \"status\": false,\n \"message\": [\n      {\n          \"value\": \"\",\n          \"msg\": \"Your password must be at least 8 characters long, MUST contain at least one capital later, a lower case letter, a special character and a number\",\n          \"param\": \"password\",\n          \"location\": \"body\"\n      },\n      {\n          \"value\": \"\",\n          \"msg\": \"Reset token is required\",\n          \"param\": \"token\",\n          \"location\": \"body\"\n      }\n  ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "INVALID TOKEN",
+          "content": " HTTP/1.1 403 TOKEN NOT VALID\n{\n     \"status\": false,\n \"message\": \"Token not valid\"\n}",
           "type": "json"
         }
       ]
@@ -1303,6 +1445,79 @@ define({ "api": [
     "groupTitle": "Sectors"
   },
   {
+    "type": "get",
+    "url": "/stakeholders",
+    "title": "Fetch stakeholders",
+    "group": "Stakeholders",
+    "name": "GetStakeholders",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"data\": [\n       {\n           \"location\": {\n               \"coordinates\": [\n                   234,\n                   -1234\n               ]\n           },\n           \"approvalStatus\": {\n               \"status\": \"Approved\",\n                \"user\": {\n                 \"_id\": \"5f3f642804d4321a0964153e\",\n                 \"firstName\": \"HDIF\",\n                 \"lastName\": \"Admin\",\n                 \"email\": \"hdiftanzania@gmail.com\"\n             },\n               \"reason\": null\n           },\n           \"socialMedias\": [\n               {\n                   \"twitter\": \"https://twitter.com/ipfsotwares\"\n               }\n           ],\n           \"services\": [],\n          \"mapper\": {\n             \"_id\": \"5f40d184cdd00b3e7075fdd3\",\n             \"firstName\": \"Jane\",\n             \"lastName\": \"Doe\",\n             \"email\": \"jdoe@example.com\"\n         },\n           \"isSelfMapped\": false,\n           \"associatedHubs\": [],\n           \"sectors\": [],\n           \"_id\": \"5f40f6699c684d6ee106ce2d\",\n           \"street\": \"Kimara\",\n           \"name\": \"iPF softwares\",\n           \"email\": \"info@ipfsoftwares.com\",\n           \"region\": \"Dar Es Salaam\",\n           \"challengesAttended\": [],\n           \"attachments\": [],\n           \"createdAt\": \"2020-08-22T10:41:45.437Z\",\n           \"updatedAt\": \"2020-08-24T08:37:13.008Z\",\n           \"__v\": 0\n       }\n   ],\n   \"total\": 2,\n   \"limit\": 50,\n   \"pageCount\": 1,\n   \"page\": 1,\n   \"pagingCounter\": 1,\n   \"hasPrevPage\": false,\n   \"hasNextPage\": false,\n   \"prev\": null,\n   \"next\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/stakeholders/stakeholder.routes.js",
+    "groupTitle": "Stakeholders",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "type": "post",
     "url": "/stakeholders",
     "title": "Add stakeholder",
@@ -1345,7 +1560,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n   \"location\": {\n       \"geopoint\": {\n           \"type\": \"Point\",\n           \"coordinates\": [\n               -122.5,\n               37.7\n           ]\n       },\n       \"name\": \"Kimara Temboni\"\n   },\n   \"socialMedias\": [\n       {\n           \"name\": \"twitter\",\n           \"url\": \"https://twitter.com/ipfsoftwares\"\n       },\n       {\n           \"name\": \"instagram\",\n           \"url\": \"https://instagram.com/ipfsoftwares\"\n       }\n   ],\n   \"services\": [],\n   \"associatedHubs\": [],\n   \"sectors\": [],\n   \"_id\": \"5f34e93b2de5ad96ae19433c\",\n   \"logo\": \"https://linktologo.png\",\n   \"certificate\": \"https://certificate.pdf\",\n   \"name\": \"iPF\",\n   \"contactPerson\": {\n       \"name\": \"Gerald\",\n       \"email\": \"gerald@ipfsoftwares.com\"\n   },\n   \"region\": \"Dar Es Salaam\",\n   \"challengesAttended\": [],\n   \"attachments\": [],\n   \"createdAt\": \"2020-08-13T07:18:19.176Z\",\n   \"updatedAt\": \"2020-08-13T07:18:19.176Z\",\n   \"__v\": 0\n}",
+          "content": "{\n   \"location\": {\n       \"geopoint\": {\n           \"type\": \"Point\",\n           \"coordinates\": [\n               -122.5,\n               37.7\n           ]\n       },\n       \"name\": \"Kimara Temboni\"\n   },\n   \"socialMedias\": [\n       {\n           \"name\": \"twitter\",\n           \"url\": \"https://twitter.com/ipfsoftwares\"\n       },\n       {\n           \"name\": \"instagram\",\n           \"url\": \"https://instagram.com/ipfsoftwares\"\n       }\n   ],\n   \"services\": [],\n   \"associatedHubs\": [],\n   \"sectors\": [],\n   \"_id\": \"5f34e93b2de5ad96ae19433c\",\n   \"logo\": \"https://linktologo.png\",\n   \"certificate\": \"https://certificate.pdf\",\n   \"name\": \"iPF\",\n   \"contactPerson\": {\n       \"name\": \"John Doe\",\n       \"email\": \"doe@example.com\"\n   },\n   \"region\": \"Dar Es Salaam\",\n   \"challengesAttended\": [],\n   \"attachments\": [],\n   \"createdAt\": \"2020-08-13T07:18:19.176Z\",\n   \"updatedAt\": \"2020-08-13T07:18:19.176Z\",\n   \"__v\": 0\n}",
           "type": "json"
         }
       ]
@@ -1354,7 +1569,112 @@ define({ "api": [
       "examples": [
         {
           "title": "UNPROCESSABLE ENTITY",
-          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n \"status\": false,\n \"message\": [\n     {\n         \"value\": \"Existing Sector\",\n         \"msg\": \"Sector with the same name already exist!\",\n         \"param\": \"name\",\n         \"location\": \"body\"\n     }\n ]\n}",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n \"status\": false,\n \"message\": [\n     {\n         \"value\": \"\",\n         \"msg\": \"Name is required\",\n         \"param\": \"name\",\n         \"location\": \"body\"\n     }\n ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/stakeholders/stakeholder.routes.js",
+    "groupTitle": "Stakeholders"
+  },
+  {
+    "type": "post",
+    "url": "/stakeholders/:id/verify",
+    "title": "Approve/Reject Stakeholder Entry",
+    "group": "Stakeholders",
+    "name": "PostVerifyStakeholder",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The ID of stakeholder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Approval Status either Rejected or Approved</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "reason",
+            "description": "<p>Reason. Required if status = Rejected</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  \"status\": true,\n  \"message\": \"Status Changed Successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n \"status\": false,\n \"message\": [\n     {\n         \"value\": \"\",\n         \"msg\": \"Please tell us why are you rejecting this entry\",\n         \"param\": \"reason\",\n         \"location\": \"body\"\n     }\n ]\n}",
           "type": "json"
         },
         {
