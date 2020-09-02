@@ -1446,7 +1446,7 @@
   },
   {
     "type": "get",
-    "url": "/stakeholders",
+    "url": "/stakeholders?limit=50&&page=1&&search=softwares",
     "title": "Fetch stakeholders",
     "group": "Stakeholders",
     "name": "GetStakeholders",
@@ -1459,6 +1459,33 @@
             "optional": false,
             "field": "Authorization",
             "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limit of returned documents per page</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "page",
+            "description": "<p>Current page</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "search",
+            "description": "<p>Search term</p>"
           }
         ]
       }
