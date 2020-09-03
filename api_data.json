@@ -1575,10 +1575,164 @@
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "email",
+            "description": "<p>The email of stakeholder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "phone",
+            "description": "<p>The phone of stakeholder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "website",
+            "description": "<p>The website of stakeholder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "postalAddress",
+            "description": "<p>The postal address of stakeholder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "region",
+            "description": "<p>The region of stakeholder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "tagline",
+            "description": "<p>The tagline of stakeholder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": true,
+            "field": "contactPerson",
+            "description": "<p>The stakeholder contact person details ie name, email, phone</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Object",
             "optional": false,
             "field": "location",
             "description": "<p>stakeholder location details</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "location[coordinates]",
+            "description": "<p>Location coordinates in the form of [longitude, latitude]</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "location[name]",
+            "description": "<p>Location name eg Majengo</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": true,
+            "field": "isSelfMapped",
+            "description": "<p>Whether or not a mapper is mapping his/her self</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": true,
+            "field": "challenges",
+            "description": "<p>Challenges attended; Array of objects</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "challenges[name]",
+            "description": "<p>Challenge name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "challenges[frequency]",
+            "description": "<p>Challenge frequency</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "challenges[host]",
+            "description": "<p>Challenge host</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "challenges[description]",
+            "description": "<p>Challenge description</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": true,
+            "field": "challenges[start]",
+            "description": "<p>Challenge start date</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date",
+            "optional": false,
+            "field": "challenges[end]",
+            "description": "<p>Challenge end date</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": true,
+            "field": "innovationTypes",
+            "description": "<p>Innovation types</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": true,
+            "field": "isRegistered",
+            "description": "<p>Stakeholder registration status</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": true,
+            "field": "isForProfit",
+            "description": "<p>Whether or not the Hub/Innovation is profit/non-profit</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "yearFounded",
+            "description": "<p>Year founded</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": true,
+            "field": "implementer",
+            "description": "<p>Implementer details</p>"
           }
         ]
       }
