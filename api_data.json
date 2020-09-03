@@ -1624,16 +1624,16 @@
           },
           {
             "group": "Parameter",
-            "type": "Object",
+            "type": "String",
             "optional": false,
-            "field": "location",
-            "description": "<p>stakeholder location details</p>"
+            "field": "locationName",
+            "description": "<p>Location Name or street eg Kimara</p>"
           },
           {
             "group": "Parameter",
             "type": "Array",
             "optional": false,
-            "field": "location[coordinates]",
+            "field": "coordinates",
             "description": "<p>Location coordinates in the form of [longitude, latitude]</p>"
           },
           {
@@ -1695,7 +1695,7 @@
           {
             "group": "Parameter",
             "type": "Date",
-            "optional": false,
+            "optional": true,
             "field": "challenges[end]",
             "description": "<p>Challenge end date</p>"
           },
@@ -1741,7 +1741,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n   \"location\": {\n       \"geopoint\": {\n           \"type\": \"Point\",\n           \"coordinates\": [\n               -122.5,\n               37.7\n           ]\n       },\n       \"name\": \"Kimara Temboni\"\n   },\n   \"socialMedias\": [\n       {\n           \"name\": \"twitter\",\n           \"url\": \"https://twitter.com/ipfsoftwares\"\n       },\n       {\n           \"name\": \"instagram\",\n           \"url\": \"https://instagram.com/ipfsoftwares\"\n       }\n   ],\n   \"services\": [],\n   \"associatedHubs\": [],\n   \"sectors\": [],\n   \"_id\": \"5f34e93b2de5ad96ae19433c\",\n   \"logo\": \"https://linktologo.png\",\n   \"certificate\": \"https://certificate.pdf\",\n   \"name\": \"iPF\",\n   \"contactPerson\": {\n       \"name\": \"John Doe\",\n       \"email\": \"doe@example.com\"\n   },\n   \"region\": \"Dar Es Salaam\",\n   \"challengesAttended\": [],\n   \"attachments\": [],\n   \"createdAt\": \"2020-08-13T07:18:19.176Z\",\n   \"updatedAt\": \"2020-08-13T07:18:19.176Z\",\n   \"__v\": 0\n}",
+          "content": "{\n     \"location\": {\n     \"type\": \"Point\",\n     \"coordinates\": [\n         -104.9903,\n         39.7392\n     ]\n },\n \"approvalDetails\": {\n     \"status\": \"Pending\",\n     \"user\": null\n },\n \"socialMedias\": [\n     {\n         \"twitter\": \"https://twitter.com/ipfsotwares\"\n     }\n ],\n \"services\": [],\n \"mapper\": \"5f50bc8c282c1300172e8fb6\",\n \"isSelfMapped\": false,\n \"associatedHubs\": [],\n \"sector\": null,\n \"innovationStages\": [],\n \"innovationTypes\": [],\n \"_id\": \"5f50d88e84f4cb0017207339\",\n \"locationName\": \"Kimara\",\n \"name\": \"iPF softwares\",\n \"email\": \"info@ipfsoftwares.com\",\n \"contactPerson\": {\n     \"name\": \"Jane Ulomi\",\n     \"email\": \"janedoe@gmail.com\"\n },\n \"region\": \"Dar Es Salaam\",\n \"challenges\": [],\n \"implementer\": {\n     \"name\": \"John Ulomi\",\n     \"email\": \"johndoe@ipfsoftwares.com\"\n },\n \"attachments\": [],\n \"createdAt\": \"2020-09-03T11:50:38.838Z\",\n \"updatedAt\": \"2020-09-03T11:50:38.838Z\",\n \"__v\": 0\n}",
           "type": "json"
         }
       ]
