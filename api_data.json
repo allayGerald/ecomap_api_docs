@@ -1617,6 +1617,20 @@
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "logo",
+            "description": "<p>The stakeholder logo url</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "certificate",
+            "description": "<p>The stakeholder certificate url</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Object",
             "optional": true,
             "field": "contactPerson",
@@ -1635,13 +1649,6 @@
             "optional": false,
             "field": "coordinates",
             "description": "<p>Location coordinates in the form of [longitude, latitude]</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "location[name]",
-            "description": "<p>Location name eg Majengo</p>"
           },
           {
             "group": "Parameter",
