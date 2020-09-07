@@ -1486,6 +1486,34 @@
             "optional": true,
             "field": "search",
             "description": "<p>Search term</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "sector",
+            "description": "<p>Filter by sector</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "innovationStage",
+            "description": "<p>Filter by innovationStage</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "classification",
+            "description": "<p>Filter by classification</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "innovationType",
+            "description": "<p>Filter by innovationType</p>"
           }
         ]
       }
