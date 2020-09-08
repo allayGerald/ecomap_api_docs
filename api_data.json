@@ -1520,7 +1520,7 @@
             "type": "String",
             "optional": true,
             "field": "yearFounded",
-            "description": "<p>Filter by year</p>"
+            "description": "<p>Filter by year founded</p>"
           }
         ]
       }
