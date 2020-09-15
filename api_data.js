@@ -1946,7 +1946,26 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "src/modules/users/user.routes.js",
-    "groupTitle": "Users"
+    "groupTitle": "Users",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserRoleNotAuthorized",
+            "description": "<p>User not Authorized to access resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Forbidden Path\",\n \"roles\": [\"Administrator\"]\n}",
+          "type": "json"
+        }
+      ]
+    }
   },
   {
     "type": "put",
@@ -2091,8 +2110,23 @@ define({ "api": [
           "title": "UNPROCESSABLE ENTITY",
           "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n   \"message\": [\n       {\n           \"value\": \"taken-email@example.com\",\n           \"msg\": \"This email is taken!\",\n           \"param\": \"email\",\n           \"location\": \"body\"\n       },\n       {\n           \"msg\": \"Ambassador Must have a region\",\n           \"param\": \"region\",\n           \"location\": \"body\"\n       }\n   ]\n}",
           "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Forbidden Path\",\n \"roles\": [\"Administrator\"]\n}",
+          "type": "json"
         }
-      ]
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserRoleNotAuthorized",
+            "description": "<p>User not Authorized to access resource.</p>"
+          }
+        ]
+      }
     },
     "version": "0.0.0",
     "filename": "src/modules/users/user.routes.js",
@@ -2180,8 +2214,23 @@ define({ "api": [
           "title": "UNPROCESSABLE ENTITY",
           "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n   \"message\": [\n       {\n           \"value\": \"\",\n           \"msg\": \"First name is required!\",\n           \"param\": \"firstName\",\n           \"location\": \"body\"\n       },\n       {\n           \"value\": \"\",\n           \"msg\": \"Last name is required!\",\n           \"param\": \"lastName\",\n           \"location\": \"body\"\n       },\n       {\n           \"value\": \"taken-email@example.com\",\n           \"msg\": \"This email is taken!\",\n           \"param\": \"email\",\n           \"location\": \"body\"\n       },\n       {\n           \"msg\": \"Ambassador Must have a region\",\n           \"param\": \"region\",\n           \"location\": \"body\"\n       }\n   ]\n}",
           "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Forbidden Path\",\n \"roles\": [\"Administrator\"]\n}",
+          "type": "json"
         }
-      ]
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserRoleNotAuthorized",
+            "description": "<p>User not Authorized to access resource.</p>"
+          }
+        ]
+      }
     },
     "version": "0.0.0",
     "filename": "src/modules/users/user.routes.js",
@@ -2248,8 +2297,23 @@ define({ "api": [
           "title": "UNPROCESSABLE ENTITY",
           "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n   \"message\": [\n       {\n           \"value\": \"\",\n           \"msg\": \"Ambassador must have a region\",\n           \"param\": \"region\",\n           \"location\": \"body\"\n       }\n   ]\n}",
           "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Forbidden Path\",\n \"roles\": [\"Administrator\"]\n}",
+          "type": "json"
         }
-      ]
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserRoleNotAuthorized",
+            "description": "<p>User not Authorized to access resource.</p>"
+          }
+        ]
+      }
     },
     "version": "0.0.0",
     "filename": "src/modules/users/user.routes.js",
