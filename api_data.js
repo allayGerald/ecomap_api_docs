@@ -1591,6 +1591,13 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "String",
+            "optional": false,
+            "field": "district",
+            "description": "<p>The district of stakeholder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
             "optional": true,
             "field": "email",
             "description": "<p>The email of stakeholder</p>"
@@ -1601,6 +1608,13 @@ define({ "api": [
             "optional": true,
             "field": "phone",
             "description": "<p>The phone of stakeholder</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "sdg",
+            "description": "<p>Stakeholder SDG</p>"
           },
           {
             "group": "Parameter",
@@ -1744,10 +1758,52 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "implementerId",
+            "description": "<p>The ID of Implementer</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "Object",
             "optional": true,
             "field": "implementer",
             "description": "<p>Implementer details</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "implementer[name]",
+            "description": "<p>Implementer Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "implementer[email]",
+            "description": "<p>Implementer email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "implementer[phone]",
+            "description": "<p>Implementer phone</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "implementer[website]",
+            "description": "<p>Implementer website</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "implementer[logo]",
+            "description": "<p>Implementer logo url</p>"
           }
         ]
       }
