@@ -2020,8 +2020,8 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/users",
-    "title": "Fetch staff-users",
+    "url": "/users?role=",
+    "title": "Fetch users",
     "group": "Users",
     "name": "GetUsers",
     "header": {
@@ -2033,6 +2033,19 @@ define({ "api": [
             "optional": false,
             "field": "Authorization",
             "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "role",
+            "description": "<p>Filter by user role eg mapper, administrator, ambassador, editor, staff[all roles other than mapper]</p>"
           }
         ]
       }
@@ -2063,7 +2076,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Forbidden-Error:",
-          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Forbidden Path\",\n \"roles\": [\"Administrator\"]\n}",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"You have no access to view this resource\",\n \"roles\": [\"Administrator\"]\n}",
           "type": "json"
         }
       ]
@@ -2215,7 +2228,7 @@ define({ "api": [
         },
         {
           "title": "Forbidden-Error:",
-          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Forbidden Path\",\n \"roles\": [\"Administrator\"]\n}",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"You have no access to view this resource\",\n \"roles\": [\"Administrator\"]\n}",
           "type": "json"
         }
       ],
@@ -2319,7 +2332,7 @@ define({ "api": [
         },
         {
           "title": "Forbidden-Error:",
-          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Forbidden Path\",\n \"roles\": [\"Administrator\"]\n}",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"You have no access to view this resource\",\n \"roles\": [\"Administrator\"]\n}",
           "type": "json"
         }
       ],
@@ -2402,7 +2415,7 @@ define({ "api": [
         },
         {
           "title": "Forbidden-Error:",
-          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Forbidden Path\",\n \"roles\": [\"Administrator\"]\n}",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"You have no access to view this resource\",\n \"roles\": [\"Administrator\"]\n}",
           "type": "json"
         }
       ],
