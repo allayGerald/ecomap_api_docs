@@ -2020,7 +2020,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/users?role=",
+    "url": "/users?search=\"Admin\"&role=",
     "title": "Fetch users",
     "group": "Users",
     "name": "GetUsers",
