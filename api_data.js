@@ -1566,7 +1566,7 @@ define({ "api": [
             "type": "String",
             "optional": true,
             "field": "yearFounded",
-            "description": "<p>Filter by year founded</p>"
+            "description": "<p>Filter by year founded ie Stakeholders that are founded before or on that year and are still active</p>"
           }
         ]
       }
@@ -1801,6 +1801,13 @@ define({ "api": [
             "optional": true,
             "field": "yearFounded",
             "description": "<p>Year founded</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "yearEnded",
+            "description": "<p>Year ended</p>"
           },
           {
             "group": "Parameter",
