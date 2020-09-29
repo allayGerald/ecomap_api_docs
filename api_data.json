@@ -2020,7 +2020,7 @@
   },
   {
     "type": "get",
-    "url": "/users?search=\"Admin\"&role=",
+    "url": "/users?role=",
     "title": "Fetch users",
     "group": "Users",
     "name": "GetUsers",
@@ -2084,7 +2084,7 @@
   },
   {
     "type": "put",
-    "url": "users/:id/change-status",
+    "url": "/users/:id/change-status",
     "title": "Change account status",
     "group": "Users",
     "name": "PatchChangeStatus",
@@ -2214,7 +2214,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n\"createdAt\": \"2020-08-10T11:45:48.418Z\",\n\"firstName\": \"jane\",\n \"lastName\": \"doe\",\n \"email\": \"janedoe@example.com\",\n \"phone\": \"255799999999\",\n  \"_id\": \"5f31336cfc8b0f02943ef8a2\"\n}",
+          "content": "{\n       \"isDefaultPassword\": false,\n       \"role\": {\n           \"_id\": \"5f34fb8ec5bac1aff484629e\",\n           \"name\": \"Administrator\",\n           \"description\": \"System Administrator, Controls the whole system\"\n       },\n       \"isActive\": true,\n       \"_id\": \"5f34fb8ec5bac1aff48462a6\",\n       \"firstName\": \"Jane\",\n       \"lastName\": \"Doe\",\n       \"email\": \"jane-doe@gmail.com\",\n       \"verifiedAt\": \"2020-08-13T08:36:29.718Z\",\n       \"lastLogin\": \"2020-08-13T08:36:48.257Z\",\n       \"createdAt\": \"2020-08-13T08:36:30.207Z\",\n       \"updatedAt\": \"2020-08-13T08:37:54.507Z\",\n       \"__v\": 0\n   }",
           "type": "json"
         }
       ]
@@ -2353,7 +2353,7 @@
   },
   {
     "type": "put",
-    "url": "users/:id/change-role",
+    "url": "/users/:id/change-role",
     "title": "Change user role",
     "group": "Users",
     "name": "PutChangeRole",
@@ -2392,19 +2392,10 @@
             "type": "String",
             "optional": true,
             "field": "region",
-            "description": "<p>User region. Required if  new role is Ambassador</p>"
+            "description": "<p>User region. Required if  new role is Ambassador</p> <p>{ &quot;isDefaultPassword&quot;: false, &quot;role&quot;: { &quot;_id&quot;: &quot;5f34fb8ec5bac1aff484629e&quot;, &quot;name&quot;: &quot;Administrator&quot;, &quot;description&quot;: &quot;System Administrator, Controls the whole system&quot; }, &quot;isActive&quot;: true, &quot;_id&quot;: &quot;5f34fb8ec5bac1aff48462a6&quot;, &quot;firstName&quot;: &quot;Jane&quot;, &quot;lastName&quot;: &quot;Doe&quot;, &quot;email&quot;: &quot;jane-doe@gmail.com&quot;, &quot;verifiedAt&quot;: &quot;2020-08-13T08:36:29.718Z&quot;, &quot;lastLogin&quot;: &quot;2020-08-13T08:36:48.257Z&quot;, &quot;createdAt&quot;: &quot;2020-08-13T08:36:30.207Z&quot;, &quot;updatedAt&quot;: &quot;2020-08-13T08:37:54.507Z&quot;, &quot;__v&quot;: 0 }</p>"
           }
         ]
       }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "{\n\"status\": true,\n\"message\": \"User role changed successfully\"\n}",
-          "type": "json"
-        }
-      ]
     },
     "error": {
       "examples": [
