@@ -2512,7 +2512,7 @@ define({ "api": [
   },
   {
     "type": "put",
-    "url": "/users/:id/roles/:roleID",
+    "url": "/users/:id/change-role",
     "title": "Change user role",
     "group": "Users",
     "name": "PutChangeRole",
@@ -2538,16 +2538,16 @@ define({ "api": [
             "optional": false,
             "field": "id",
             "description": "<p>Id of the user, passed as url parameter</p>"
-          },
+          }
+        ],
+        "Request message body": [
           {
-            "group": "Parameter",
+            "group": "Request message body",
             "type": "String",
             "optional": false,
             "field": "roleID",
             "description": "<p>The Id of new role</p>"
-          }
-        ],
-        "Request message body": [
+          },
           {
             "group": "Request message body",
             "type": "String",
