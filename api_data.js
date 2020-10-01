@@ -1202,6 +1202,123 @@ define({ "api": [
     "groupTitle": "Implementers"
   },
   {
+    "type": "patch",
+    "url": "/implementers/:id",
+    "title": "Update implementer details",
+    "group": "Implementers",
+    "name": "GetImplementers",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The ID of Implementer</p>"
+          }
+        ],
+        "Request message body": [
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "name",
+            "description": "<p>Implementer name</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "email",
+            "description": "<p>Implementer email</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "phone",
+            "description": "<p>Implementer phone</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "website",
+            "description": "<p>Implementer website</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "type",
+            "description": "<p>Implementer type (Individual or Team)</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Array",
+            "optional": true,
+            "field": "socialMedias",
+            "description": "<p>Implementer social media accounts</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n       {\n           \"socialMedias\": [\n               {\n                   \"twitter\": \"https://twitter.com/ipfsotwares\"\n               }\n           ],\n           \"name\": \"iPF softwares\",\n           \"email\": \"info@ipfsoftwares.com\",\n           \"createdAt\": \"2020-08-22T10:41:45.437Z\",\n           \"updatedAt\": \"2020-08-24T08:37:13.008Z\",\n           \"__v\": 0\n       }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/implementers/implementer.routes.js",
+    "groupTitle": "Implementers",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "type": "get",
     "url": "/sectors?search=",
     "title": "Fetch Sectors",
@@ -1645,6 +1762,34 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": true,
+            "field": "ward",
+            "description": "<p>Ward</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "street",
+            "description": "<p>Street</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "subWard",
+            "description": "<p>sub ward</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "abbreviation",
+            "description": "<p>Abbreviation</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
             "field": "email",
             "description": "<p>The email of stakeholder</p>"
           },
@@ -1696,6 +1841,13 @@ define({ "api": [
             "optional": true,
             "field": "certificate",
             "description": "<p>The stakeholder certificate url</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "socialMedias",
+            "description": "<p>The stakeholder social media accounts</p>"
           },
           {
             "group": "Parameter",
@@ -1821,7 +1973,7 @@ define({ "api": [
             "type": "Object",
             "optional": true,
             "field": "implementer",
-            "description": "<p>Implementer details</p>"
+            "description": "<p>Implementer details (name, email, phone, website, description, logo, type ie Individual or Team)</p>"
           },
           {
             "group": "Parameter",
