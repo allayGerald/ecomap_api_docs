@@ -1661,6 +1661,13 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": true,
+            "field": "status",
+            "description": "<p>Filter by Approval Status ie Pending, Approved or Rejected</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
             "field": "innovationStage",
             "description": "<p>Filter by innovationStage</p>"
           },
