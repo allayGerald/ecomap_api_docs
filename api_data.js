@@ -1206,7 +1206,7 @@ define({ "api": [
     "url": "/implementers/:id",
     "title": "Update implementer details",
     "group": "Implementers",
-    "name": "GetImplementers",
+    "name": "PatchImplementers",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -2183,6 +2183,339 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/modules/stakeholders/stakeholder.routes.js",
     "groupTitle": "Stakeholders"
+  },
+  {
+    "type": "patch",
+    "url": "/stakeholders:id",
+    "title": "Update stakeholder details",
+    "group": "Stakeholders",
+    "name": "UpdateStakeholders",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The ID of Stakeholder</p>"
+          }
+        ],
+        "Request message body": [
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "name",
+            "description": "<p>The name of stakeholder</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "region",
+            "description": "<p>The region of stakeholder</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "locationName",
+            "description": "<p>Location Name or street eg Kimara</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Array",
+            "optional": true,
+            "field": "coordinates",
+            "description": "<p>Location coordinates in the form of [longitude, latitude]</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "district",
+            "description": "<p>The district of stakeholder</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "ward",
+            "description": "<p>Ward</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "street",
+            "description": "<p>Street</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "subWard",
+            "description": "<p>sub ward</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "abbreviation",
+            "description": "<p>Abbreviation</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "email",
+            "description": "<p>The email of stakeholder</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "phone",
+            "description": "<p>The phone of stakeholder</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "sdg",
+            "description": "<p>Stakeholder SDG</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "website",
+            "description": "<p>The website of stakeholder</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "postalAddress",
+            "description": "<p>The postal address of stakeholder</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "tagline",
+            "description": "<p>The tagline of stakeholder</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "logo",
+            "description": "<p>The stakeholder logo url</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "certificate",
+            "description": "<p>The stakeholder certificate url</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "socialMedias",
+            "description": "<p>The stakeholder social media accounts</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Object",
+            "optional": true,
+            "field": "contactPerson",
+            "description": "<p>The stakeholder contact person details ie name, email, phone</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Boolean",
+            "optional": true,
+            "field": "isSelfMapped",
+            "description": "<p>Whether or not a mapper is mapping his/her self</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Array",
+            "optional": true,
+            "field": "challenges",
+            "description": "<p>Challenges attended; Array of objects</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "challenges[name]",
+            "description": "<p>Challenge name</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "challenges[frequency]",
+            "description": "<p>Challenge frequency</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "challenges[host]",
+            "description": "<p>Challenge host</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Object",
+            "optional": true,
+            "field": "challenges[fund]",
+            "description": "<p>Challenge Fund Details</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "challenges[description]",
+            "description": "<p>Challenge description</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Date",
+            "optional": true,
+            "field": "challenges[start]",
+            "description": "<p>Challenge start date</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Date",
+            "optional": true,
+            "field": "challenges[end]",
+            "description": "<p>Challenge end date</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Array",
+            "optional": true,
+            "field": "innovationTypes",
+            "description": "<p>Innovation types</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Array",
+            "optional": true,
+            "field": "sectors",
+            "description": "<p>Financial sectors</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Boolean",
+            "optional": true,
+            "field": "isRegistered",
+            "description": "<p>Stakeholder registration status</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Boolean",
+            "optional": true,
+            "field": "isForProfit",
+            "description": "<p>Whether or not the Hub/Innovation is profit/non-profit</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Integer",
+            "optional": true,
+            "field": "yearFounded",
+            "description": "<p>Year founded</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Integer",
+            "optional": true,
+            "field": "yearEnded",
+            "description": "<p>Year ended</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "implementer",
+            "description": "<p>The ID of Implementer</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n     \"location\": {\n     \"type\": \"Point\",\n     \"coordinates\": [\n         -104.9903,\n         39.7392\n     ]\n },\n \"approvalDetails\": {\n     \"status\": \"Pending\",\n     \"user\": null\n },\n \"socialMedias\": [\n     {\n         \"twitter\": \"https://twitter.com/ipfsotwares\"\n     }\n ],\n \"services\": [],\n \"mapper\": \"5f50bc8c282c1300172e8fb6\",\n \"isSelfMapped\": false,\n \"associatedHubs\": [],\n \"sectors\": [],\n \"innovationStages\": [],\n \"innovationTypes\": [],\n \"_id\": \"5f50d88e84f4cb0017207339\",\n \"locationName\": \"Kimara\",\n \"name\": \"iPF softwares\",\n \"email\": \"info@ipfsoftwares.com\",\n \"contactPerson\": {\n     \"name\": \"Jane Ulomi\",\n     \"email\": \"janedoe@gmail.com\"\n },\n \"region\": \"Dar Es Salaam\",\n \"challenges\": [],\n \"implementer\": {\n     \"name\": \"John Ulomi\",\n     \"email\": \"johndoe@ipfsoftwares.com\"\n },\n \"attachments\": [],\n \"createdAt\": \"2020-09-03T11:50:38.838Z\",\n \"updatedAt\": \"2020-09-03T11:50:38.838Z\",\n \"__v\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/stakeholders/stakeholder.routes.js",
+    "groupTitle": "Stakeholders",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
   },
   {
     "type": "get",
