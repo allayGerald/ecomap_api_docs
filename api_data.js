@@ -687,6 +687,57 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/auth/resend-token",
+    "title": "Resend Email Verification Token",
+    "group": "Auth",
+    "name": "PostResendToken",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>user email</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"status\": true,\n   \"message\": \"Email sent successfully.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n \"status\": false,\n \"message\": [\n      {\n          \"value\": \"not-valid-email\",\n          \"msg\": \"Email field must be a valid email\",\n          \"param\": \"email\",\n          \"location\": \"body\"\n      }\n  ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "USER NOT FOUND",
+          "content": " HTTP/1.1 404 USER NOT FOUND\n{\n \"status\": false,\n \"message\": \"There's no record of user with email F@gmail.com\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "USER ALREADY VERIFIED",
+          "content": " HTTP/1.1 400 USER ALREADY VERIFIED\n{\n \"status\": false,\n \"message\": \"User already verified\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/auth/auth.routes.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
     "url": "/auth/passwords/reset",
     "title": "Reset Password",
     "group": "Auth",
