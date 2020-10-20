@@ -1,5 +1,375 @@
 define({ "api": [
   {
+    "type": "get",
+    "url": "/api-clients",
+    "title": "Fetch all API-Clients",
+    "group": "API-Client",
+    "name": "GetApiClient",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  \"docs\": [\n      {\n          \"isActive\": true,\n          \"_id\": \"5f8e9f96e4f64c8e5af8d469\",\n          \"url\": \"https://mahiri.co.tz\",\n          \"name\": \"Mahiri App\",\n          \"description\": \"Test app\",\n          \"user\": {\n              \"_id\": \"5f60832b58668df95b61435a\",\n              \"firstName\": \"Jane\",\n              \"lastName\": \"Mdoe\",\n              \"email\": \"janemdoe@mahiri.com\"\n          },\n          \"createdAt\": \"2020-10-20T08:28:06.410Z\",\n          \"updatedAt\": \"2020-10-20T08:28:06.410Z\",\n          \"__v\": 0\n      }\n  ],\n  \"totalDocs\": 1,\n  \"limit\": 1,\n  \"totalPages\": 1,\n  \"page\": 1,\n  \"pagingCounter\": 1,\n  \"hasPrevPage\": false,\n  \"hasNextPage\": false,\n  \"prevPage\": null,\n  \"nextPage\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/apiClients/apiClient.routes.js",
+    "groupTitle": "API-Client",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserRoleNotAuthorized",
+            "description": "<p>User not Authorized to access resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"You have no access to view this resource\",\n \"roles\": [\"Administrator\"]\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
+    "url": "/api-clients/me",
+    "title": "Fetch my own API-Clients",
+    "group": "API-Client",
+    "name": "GetMyApiClients",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response",
+          "content": "[\n{\n          \"isActive\": true,\n          \"_id\": \"5f8e9f96e4f64c8e5af8d469\",\n          \"url\": \"https://mahiri.co.tz\",\n          \"name\": \"Mahiri App\",\n          \"description\": \"Test app\",\n          \"user\":  \"5f60832b58668df95b61435a\",\n          \"createdAt\": \"2020-10-20T08:28:06.410Z\",\n          \"updatedAt\": \"2020-10-20T08:28:06.410Z\",\n          \"__v\": 0\n  }\n ]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/apiClients/apiClient.routes.js",
+    "groupTitle": "API-Client",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "patch",
+    "url": "/api-clients/:id",
+    "title": "Update my API-Client details",
+    "group": "API-Client",
+    "name": "PatchApiClient",
+    "parameter": {
+      "fields": {
+        "Request message body": [
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "name",
+            "description": "<p>The name of your application</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "iconUrl",
+            "description": "<p>Url to client icon</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "description",
+            "description": "<p>description Additional information</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "privacyPolicyLink",
+            "description": "<p>Link to the client privacy policy</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "clientId",
+            "description": "<p>The clientId used to authorize client app</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  \"isActive\": true,\n  \"_id\": \"5f8e9f96e4f64c8e5af8d469\",\n  \"url\": \"https://mahiri.co.tz\",\n  \"name\": \"Mahiri App\",\n  \"description\": \"Test app\",\n  \"user\":  \"5f60832b58668df95b61435a\",\n  \"createdAt\": \"2020-10-20T08:28:06.410Z\",\n  \"updatedAt\": \"2020-10-20T08:28:06.410Z\",\n  \"__v\": 0\n  }\n\n HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Only owner can edit this client details\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/apiClients/apiClient.routes.js",
+    "groupTitle": "API-Client",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/api-clients",
+    "title": "Register API-Client",
+    "group": "API-Client",
+    "name": "PostApiClient",
+    "parameter": {
+      "fields": {
+        "Request message body": [
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The name of your application</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "iconUrl",
+            "description": "<p>Url to client icon</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "description",
+            "description": "<p>description Additional information</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "privacyPolicyLink",
+            "description": "<p>Link to the client privacy policy</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "clientId",
+            "description": "<p>The clientId used to authorize client app</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n \"clientId\": \"5f8e9f96e4f64c8e5af8d469\",\n \"status\": true\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n     \"status\": false,\n \"message\": [\n      {\n          \"value\": \"\",\n          \"msg\": \"Application name is required!\",\n          \"param\": \"name\",\n          \"location\": \"body\"\n      }\n  ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Change Default Password.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserHasDefaultPassword",
+            "description": "<p>User must change default password to proceed.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotActive",
+            "description": "<p>Deactivated can not access resource.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/apiClients/apiClient.routes.js",
+    "groupTitle": "API-Client"
+  },
+  {
+    "type": "put",
+    "url": "/api-clients/:id/change-status",
+    "title": "Change Client Status",
+    "group": "API-Client",
+    "name": "PutChangeClientStatus",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the client to change status, passed as url parameter</p>"
+          }
+        ],
+        "Request message body": [
+          {
+            "group": "Request message body",
+            "type": "Boolean",
+            "optional": false,
+            "field": "isActive",
+            "description": "<p>New status, true for active</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "reason",
+            "description": "<p>Reason for changing user account status. Required when deactivating account</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n\"status\": true,\n\"message\": \"Status Changed Successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n   \"message\": [\n       {\n           \"value\": \"\",\n           \"msg\": \"Please tell us why you want to deactivate this user\",\n           \"param\": \"reason\",\n           \"location\": \"body\"\n       },\n       {\n           \"value\": \"\",\n           \"msg\": \"Status is required!\",\n           \"param\": \"isActive\",\n           \"location\": \"body\"\n       }\n   ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/apiClients/apiClient.routes.js",
+    "groupTitle": "API-Client"
+  },
+  {
     "type": "delete",
     "url": "/access/roles/:id",
     "title": "Delete Role",
@@ -1364,6 +1734,229 @@ define({ "api": [
         {
           "title": "Forbidden-Error:",
           "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
+    "url": "/public/sectors?search=",
+    "title": "Fetch Sectors",
+    "group": "Public",
+    "name": "GetPublicSectors",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "search",
+            "description": "<p>search term</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "[\n{\n       \"_id\": \"5f33574fafa3ad42e1a6ff34\",\n       \"name\": \"ICT\",\n       \"description\": \"ICT\",\n       \"createdAt\": \"2020-08-12T02:43:27.180Z\",\n       \"updatedAt\": \"2020-08-12T02:43:27.180Z\",\n       \"__v\": 0\n   },\n{\n       \"_id\": \"5f33881cfbb58d7cc27118d1\",\n       \"name\": \"ICTs\",\n       \"description\": \"ADMIN\",\n       \"createdAt\": \"2020-08-12T06:11:40.182Z\",\n       \"updatedAt\": \"2020-08-12T06:11:40.182Z\",\n       \"__v\": 0\n   }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/public/public.routes.js",
+    "groupTitle": "Public",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>API-Client not authenticated.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
+    "url": "/public/stakeholders/:id",
+    "title": "View stakeholder details",
+    "group": "Public",
+    "name": "GetPublicStakeholder",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "clientId",
+            "description": "<p>Your app Id, You can pass it as query parameter or part of request body</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The ID of Stakeholder</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n     \"location\": {\n     \"type\": \"Point\",\n     \"coordinates\": [\n         -104.9903,\n         39.7392\n     ]\n },\n \"approvalDetails\": {\n     \"status\": \"Approved\",\n     \"user\": null\n },\n \"socialMedias\": [\n     {\n         \"twitter\": \"https://twitter.com/ipfsotwares\"\n     }\n ],\n \"services\": [],\n \"mapper\": \"5f50bc8c282c1300172e8fb6\",\n \"isSelfMapped\": false,\n \"associatedHubs\": [],\n \"sectors\": [],\n \"innovationStages\": [],\n \"innovationTypes\": [],\n \"_id\": \"5f50d88e84f4cb0017207339\",\n \"locationName\": \"Kimara\",\n \"name\": \"iPF softwares\",\n \"email\": \"info@ipfsoftwares.com\",\n \"contactPerson\": {\n     \"name\": \"Jane Ulomi\",\n     \"email\": \"janedoe@gmail.com\"\n },\n \"region\": \"Dar Es Salaam\",\n \"challenges\": [],\n \"implementer\": {\n     \"name\": \"John Ulomi\",\n     \"email\": \"johndoe@ipfsoftwares.com\"\n },\n \"attachments\": [],\n \"createdAt\": \"2020-09-03T11:50:38.838Z\",\n \"updatedAt\": \"2020-09-03T11:50:38.838Z\",\n \"__v\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/public/public.routes.js",
+    "groupTitle": "Public",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>API-Client not authenticated.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
+    "url": "/public/stakeholders?limit=1&page=1&search=softwares&innovationType=Service",
+    "title": "Fetch stakeholders",
+    "group": "Public",
+    "name": "GetPublicStakeholders",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "clientId",
+            "description": "<p>Your app Id, You can pass it as query parameter or part of request body</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "limit",
+            "description": "<p>Limit of returned documents per page</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "page",
+            "description": "<p>Current page</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "search",
+            "description": "<p>Search term</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "sector",
+            "description": "<p>Filter by sector</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "status",
+            "description": "<p>Filter by Approval Status ie Pending, Approved or Rejected</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "innovationStage",
+            "description": "<p>Filter by innovationStage</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "classification",
+            "description": "<p>Filter by classification</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "innovationType",
+            "description": "<p>Filter by innovationType</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "yearFounded",
+            "description": "<p>Filter by year founded ie Stakeholders that are founded before or on that year and are still active</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"data\": [\n       {\n           \"location\": {\n               \"coordinates\": [\n                   234,\n                   -1234\n               ]\n           },\n           \"approvalStatus\": {\n               \"status\": \"Approved\",\n                \"user\": {\n                 \"_id\": \"5f3f642804d4321a0964153e\",\n                 \"firstName\": \"HDIF\",\n                 \"lastName\": \"Admin\",\n                 \"email\": \"hdiftanzania@gmail.com\"\n             },\n               \"reason\": null\n           },\n           \"socialMedias\": [\n               {\n                   \"twitter\": \"https://twitter.com/ipfsotwares\"\n               }\n           ],\n           \"services\": [],\n          \"mapper\": {\n             \"_id\": \"5f40d184cdd00b3e7075fdd3\",\n             \"firstName\": \"Jane\",\n             \"lastName\": \"Doe\",\n             \"email\": \"jdoe@example.com\"\n         },\n           \"isSelfMapped\": false,\n           \"associatedHubs\": [],\n           \"sectors\": [],\n           \"innovationTypes\": [\"Service\"],\n           \"_id\": \"5f40f6699c684d6ee106ce2d\",\n           \"locationName\": \"Kimara\",\n           \"name\": \"iPF softwares\",\n           \"email\": \"info@ipfsoftwares.com\",\n           \"region\": \"Dar Es Salaam\",\n           \"challengesAttended\": [],\n           \"attachments\": [],\n           \"createdAt\": \"2020-08-22T10:41:45.437Z\",\n           \"updatedAt\": \"2020-08-24T08:37:13.008Z\",\n           \"__v\": 0\n       }\n   ],\n   \"total\": 2,\n   \"limit\": 1,\n   \"pageCount\": 1,\n   \"page\": 1,\n   \"pagingCounter\": 1,\n   \"hasPrevPage\": false,\n   \"hasNextPage\": false,\n   \"prev\": null,\n   \"next\": null\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/public/public.routes.js",
+    "groupTitle": "Public",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>API-Client not authenticated.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
           "type": "json"
         }
       ]
