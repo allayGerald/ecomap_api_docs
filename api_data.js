@@ -98,6 +98,57 @@ define({ "api": [
     }
   },
   {
+    "type": "post",
+    "url": "/api-clients/:id/refresh",
+    "title": "Refresh clientId",
+    "group": "API-Client",
+    "name": "POSTRefreshClientID",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the client to change status, passed as url parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n\"status\": true,\n\"clientId\": \"5faa4a36ec0ca1d83aaa509cd39cd826c93113b8e5f2162143fc003a\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/apiClients/apiClient.routes.js",
+    "groupTitle": "API-Client",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ResourceNotFoundError",
+            "description": "<p>Can not find specified resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "ResourceNotFoundError:",
+          "content": " HTTP/1.1 404 NotFound\n{\n \"status\": false,\n \"message\": \"Resource not found!\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "type": "patch",
     "url": "/api-clients/:id",
     "title": "Update my API-Client details",
