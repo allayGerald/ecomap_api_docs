@@ -1,5 +1,56 @@
 define({ "api": [
   {
+    "type": "delete",
+    "url": "/api-clients/:id",
+    "title": "Delete My API-Client",
+    "group": "API-Client",
+    "name": "DELETEClient",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the client to change status, passed as url parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 204\n{\n   \"status\": true\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/apiClients/apiClient.routes.js",
+    "groupTitle": "API-Client",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ResourceNotFoundError",
+            "description": "<p>Can not find specified resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "ResourceNotFoundError:",
+          "content": " HTTP/1.1 404 NotFound\n{\n \"status\": false,\n \"message\": \"Resource not found!\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "type": "get",
     "url": "/api-clients",
     "title": "Fetch all API-Clients",
@@ -2401,7 +2452,7 @@ define({ "api": [
   {
     "type": "patch",
     "url": "/stakeholders:id/suggestions",
-    "title": "Get Stakeholders suggested edits",
+    "title": "Suggest Edit",
     "group": "Stakeholders",
     "name": "EditSuggestion",
     "header": {
