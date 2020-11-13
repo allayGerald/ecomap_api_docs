@@ -82,7 +82,7 @@
       "examples": [
         {
           "title": "Forbidden-Error:",
-          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"You have no access to view this resource\",\n \"roles\": [\"Administrator\"]\n}",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n  \"message\": \"Client Account deactivated, contact administrator for more details.\"\n}",
           "type": "json"
         }
       ]
@@ -2491,6 +2491,13 @@
             "group": "Request message body",
             "type": "String",
             "optional": true,
+            "field": "suggestionType",
+            "description": "<p>suggestion type</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
             "field": "name",
             "description": "<p>The name of stakeholder</p>"
           },
@@ -4028,7 +4035,7 @@
       "examples": [
         {
           "title": "Forbidden-Error:",
-          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"You have no access to view this resource\",\n \"roles\": [\"Administrator\"]\n}",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n  \"message\": \"Client Account deactivated, contact administrator for more details.\"\n}",
           "type": "json"
         }
       ]
@@ -4180,7 +4187,7 @@
         },
         {
           "title": "Forbidden-Error:",
-          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"You have no access to view this resource\",\n \"roles\": [\"Administrator\"]\n}",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n  \"message\": \"Client Account deactivated, contact administrator for more details.\"\n}",
           "type": "json"
         }
       ],
@@ -4284,7 +4291,7 @@
         },
         {
           "title": "Forbidden-Error:",
-          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"You have no access to view this resource\",\n \"roles\": [\"Administrator\"]\n}",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n  \"message\": \"Client Account deactivated, contact administrator for more details.\"\n}",
           "type": "json"
         }
       ],
@@ -4369,7 +4376,7 @@
         },
         {
           "title": "Forbidden-Error:",
-          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n \"message\": \"You have no access to view this resource\",\n \"roles\": [\"Administrator\"]\n}",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n  \"message\": \"Client Account deactivated, contact administrator for more details.\"\n}",
           "type": "json"
         }
       ],
