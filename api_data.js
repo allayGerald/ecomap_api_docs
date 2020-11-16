@@ -4207,6 +4207,103 @@ define({ "api": [
     "groupTitle": "Users"
   },
   {
+    "type": "patch",
+    "url": "/users/me",
+    "title": "Update My Profile",
+    "group": "Users",
+    "name": "PatchUsersMe",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>LoggedIn User jwt for Authorization.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "profilePic",
+            "description": "<p>profile picture url</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>user firstName</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "lastName",
+            "description": "<p>user lastName</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>user email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "phone",
+            "description": "<p>user Phone number</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n       \"isDefaultPassword\": false,\n       \"role\": {\n           \"_id\": \"5f34fb8ec5bac1aff484629e\",\n           \"name\": \"Administrator\",\n           \"description\": \"System Administrator, Controls the whole system\"\n       },\n       \"isActive\": true,\n       \"_id\": \"5f34fb8ec5bac1aff48462a6\",\n       \"firstName\": \"Jane\",\n       \"lastName\": \"Doe\",\n       \"email\": \"jane-doe@gmail.com\",\n       \"verifiedAt\": \"2020-08-13T08:36:29.718Z\",\n       \"lastLogin\": \"2020-08-13T08:36:48.257Z\",\n       \"createdAt\": \"2020-08-13T08:36:30.207Z\",\n       \"updatedAt\": \"2020-08-13T08:37:54.507Z\",\n       \"__v\": 0\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "UNPROCESSABLE ENTITY",
+          "content": " HTTP/1.1 422 UNPROCESSABLE ENTITY\n{\n   \"status\": false,\n   \"message\": [\n       {\n           \"value\": \"taken-email@example.com\",\n           \"msg\": \"This email is taken!\",\n           \"param\": \"email\",\n           \"location\": \"body\"\n       },\n       {\n           \"msg\": \"Ambassador Must have a region\",\n           \"param\": \"region\",\n           \"location\": \"body\"\n       }\n   ]\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden-Error:",
+          "content": " HTTP/1.1 403 Forbidden\n{\n \"status\": false,\n  \"message\": \"Client Account deactivated, contact administrator for more details.\"\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserRoleNotAuthorized",
+            "description": "<p>User not Authorized to access resource.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/users/user.routes.js",
+    "groupTitle": "Users"
+  },
+  {
     "type": "post",
     "url": "/users",
     "title": "Create new user",
