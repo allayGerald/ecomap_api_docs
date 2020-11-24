@@ -1767,6 +1767,323 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/faqs",
+    "title": "Fetch FAQs",
+    "group": "FAQs",
+    "name": "GetFAQs",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "category",
+            "description": "<p>Filter by category comma separated for multiple</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "[\n{\n       \"categories\": [\n           \"Mapping\",\n           \"General\"\n       ],\n       \"_id\": \"5fbd0932fb227e2058063b70\",\n       \"question\": \"How to map myself on innovate\",\n       \"answer\": \"This is how to map\",\n       \"createdAt\": \"2020-11-24T13:22:58.548Z\",\n       \"updatedAt\": \"2020-11-24T13:22:58.726Z\",\n       \"__v\": 0\n   },\n{\n       \"categories\": [\n           \"mapping\",\n           \"api-client\"\n       ],\n       \"_id\": \"5fbd0932fb227e2058063b71\",\n       \"question\": \"Lorem Ipsum?\",\n       \"answer\": \"Lorem Ipsum\",\n       \"createdAt\": \"2020-11-24T13:22:58.600Z\",\n       \"updatedAt\": \"2020-11-24T13:22:58.600Z\",\n       \"__v\": 0\n   }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/faq/faq.routes.js",
+    "groupTitle": "FAQs"
+  },
+  {
+    "type": "get",
+    "url": "/faqs/:id/feedbacks/count",
+    "title": "Count FAQ feedback status",
+    "group": "FAQs",
+    "name": "GetFAQsCount",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The ID of FAQ</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": true,
+            "field": "isHelpful",
+            "description": "<p>Whether or not feedback was marked as useful, default true</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "gaveFeedback",
+            "description": "<p>Whether or not user gave feedback to particular FAQ</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "count",
+            "description": "<p>Count</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"gaveFeedback\": true,\n    \"count\": 23\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/faq/faq.routes.js",
+    "groupTitle": "FAQs"
+  },
+  {
+    "type": "patch",
+    "url": "/faqs/:id",
+    "title": "Edit FAQ",
+    "group": "FAQs",
+    "name": "PatchFAQFeedback",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The ID of FAQ</p>"
+          }
+        ],
+        "Request message body": [
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "question",
+            "description": "<p>Question</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": true,
+            "field": "answer",
+            "description": "<p>Answer</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Array",
+            "optional": true,
+            "field": "categories",
+            "description": "<p>Categories</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"categories\": [\n       \"Mapping\"\n   ],\n   \"_id\": \"5fbd15bbfd92b23d10cdd28b\",\n   \"question\": \"Lorem Ipsum?\",\n   \"answer\": \"Answer\"\n   \"createdAt\": \"2020-11-24T14:16:27.617Z\",\n   \"updatedAt\": \"2020-11-24T14:16:27.617Z\",\n   \"__v\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/faq/faq.routes.js",
+    "groupTitle": "FAQs",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ResourceNotFoundError",
+            "description": "<p>Can not find specified resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "ResourceNotFoundError:",
+          "content": " HTTP/1.1 404 NotFound\n{\n \"status\": false,\n \"message\": \"Resource not found!\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/faqs/:id",
+    "title": "Create FAQ",
+    "group": "FAQs",
+    "name": "PostFAQ",
+    "parameter": {
+      "fields": {
+        "Request message body": [
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": false,
+            "field": "question",
+            "description": "<p>Question</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "String",
+            "optional": false,
+            "field": "answer",
+            "description": "<p>Answer</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Array",
+            "optional": false,
+            "field": "categories",
+            "description": "<p>Categories</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"categories\": [\n       \"Mapping\"\n   ],\n   \"_id\": \"5fbd15bbfd92b23d10cdd28b\",\n   \"question\": \"Lorem Ipsum?\",\n   \"answer\": \"Answer\"\n   \"createdAt\": \"2020-11-24T14:16:27.617Z\",\n   \"updatedAt\": \"2020-11-24T14:16:27.617Z\",\n   \"__v\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/faq/faq.routes.js",
+    "groupTitle": "FAQs",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/faqs/:id/feedbacks/count",
+    "title": "Give feedback",
+    "group": "FAQs",
+    "name": "PostFAQFeedback",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The ID of FAQ</p>"
+          }
+        ],
+        "Request message body": [
+          {
+            "group": "Request message body",
+            "type": "Boolean",
+            "optional": false,
+            "field": "isHelpful",
+            "description": "<p>Whether or not feedback was marked as useful</p>"
+          },
+          {
+            "group": "Request message body",
+            "type": "Boolean",
+            "optional": true,
+            "field": "description",
+            "description": "<p>Description</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"status\": true\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/faq/faq.routes.js",
+    "groupTitle": "FAQs",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotAuthenticated",
+            "description": "<p>User not authenticated.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ResourceNotFoundError",
+            "description": "<p>Can not find specified resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Error:",
+          "content": " HTTP/1.1 401 Unauthorized\n{\n \"status\": false,\n \"message\": \"Not Authenticated.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "ResourceNotFoundError:",
+          "content": " HTTP/1.1 404 NotFound\n{\n \"status\": false,\n \"message\": \"Resource not found!\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
     "url": "/implementers?limit=1&page=1&search=softwares",
     "title": "Fetch implementers",
     "group": "Implementers",
@@ -4231,28 +4548,28 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "profilePic",
             "description": "<p>profile picture url</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "firstName",
             "description": "<p>user firstName</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "lastName",
             "description": "<p>user lastName</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "email",
             "description": "<p>user email</p>"
           },
