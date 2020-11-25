@@ -1958,14 +1958,14 @@ define({ "api": [
           {
             "group": "Request message body",
             "type": "String",
-            "optional": false,
+            "optional": true,
             "field": "answer",
             "description": "<p>Answer</p>"
           },
           {
             "group": "Request message body",
             "type": "Array",
-            "optional": false,
+            "optional": true,
             "field": "categories",
             "description": "<p>Categories</p>"
           }
