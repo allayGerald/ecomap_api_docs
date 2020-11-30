@@ -2767,6 +2767,57 @@
     "groupTitle": "Sectors"
   },
   {
+    "type": "delete",
+    "url": "/stakeholder/:id",
+    "title": "Delete Stakeholder",
+    "group": "Stakeholders",
+    "name": "DELETEStakeholder",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id of the client to change status, passed as url parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 204",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/modules/stakeholders/stakeholder.routes.js",
+    "groupTitle": "Stakeholders",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ResourceNotFoundError",
+            "description": "<p>Can not find specified resource.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "ResourceNotFoundError:",
+          "content": " HTTP/1.1 404 NotFound\n{\n \"status\": false,\n \"message\": \"Resource not found!\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "type": "patch",
     "url": "/stakeholders:id/suggestions",
     "title": "Suggest Edit",
