@@ -3666,6 +3666,62 @@
             "optional": true,
             "field": "implementer[logo]",
             "description": "<p>Implementer logo url</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "fundingStage",
+            "description": "<p>FundingStage eg Angel Funding</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "operationalStatus",
+            "description": "<p>stakeholder operational status eg closed</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": true,
+            "field": "isFundraising",
+            "description": "<p>Whether or not stakeholder is fundraising</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": true,
+            "field": "membersPortfolios",
+            "description": "<p>Portfolio of members stored as array of objects</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": true,
+            "field": "researchLinks",
+            "description": "<p>researchLinks stored as array of objects</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": true,
+            "field": "partners",
+            "description": "<p>Stakeholder partners stored as array of objects</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": true,
+            "field": "impacts",
+            "description": "<p>impact eg Links to featured articles, reports etc stored as array of objects</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "market",
+            "description": "<p>Target Market eg Local competition</p>"
           }
         ]
       }
