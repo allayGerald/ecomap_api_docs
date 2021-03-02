@@ -1994,6 +1994,48 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "Array",
+            "optional": true,
+            "field": "classifications",
+            "description": "<p>Classifications for which field is applicable</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": true,
+            "field": "sectors",
+            "description": "<p>Sectors for which field is applicable</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": true,
+            "field": "meta",
+            "description": "<p>field meta data</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": true,
+            "field": "meta.type",
+            "description": "<p>field type</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": true,
+            "field": "meta.defaultValue",
+            "description": "<p>field Default value</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": true,
+            "field": "meta.isRequired",
+            "description": "<p>whether or not field is required</p>"
+          },
+          {
+            "group": "Parameter",
             "type": "String",
             "optional": true,
             "field": "description",
@@ -2006,7 +2048,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n       \"_id\": \"5f33ae15b58dcbb4eac2d0a6\",\n       \"name\": \"founder\",\n       \"classifications\": [\"business\", \"hub\"]\n       \"description\": \"\",\n       \"createdAt\": \"2020-08-12T08:53:41.100Z\",\n       \"updatedAt\": \"2020-08-12T08:53:41.100Z\",\n       \"__v\": 0\n   }",
+          "content": "{\n       \"_id\": \"5f33ae15b58dcbb4eac2d0a6\",\n       \"name\": \"founder\",\n       \"classifications\": [\"business\", \"hub\"]\n       \"sectors\": [\"education\"],\n       \"meta\": {\n         \"type\" : \"radio\",\n         \"defaultValue\": \"a\",\n         \"choices\": [\"a\", \"b\"],\n         \"isRequired\": false\n       }\n       \"description\": \"\",\n       \"createdAt\": \"2020-08-12T08:53:41.100Z\",\n       \"updatedAt\": \"2020-08-12T08:53:41.100Z\",\n       \"__v\": 0\n   }",
           "type": "json"
         }
       ]

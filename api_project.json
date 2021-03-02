@@ -1,6 +1,6 @@
 {
   "title": "Innovation Ecosystem Map - API",
-  "url": "https://staging-api.innovationmap.co.tz/api",
+  "url": "https://staging-api.innovate.co.tz/api",
   "name": "innovation_ecosystem_map_api",
   "version": "0.1.0",
   "description": "Innovation Ecosystem Map - API",
@@ -9,7 +9,7 @@
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2021-02-09T12:22:01.881Z",
+    "time": "2021-03-02T06:21:21.503Z",
     "url": "https://apidocjs.com",
     "version": "0.25.0"
   }
